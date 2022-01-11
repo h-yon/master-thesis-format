@@ -1,52 +1,190 @@
-% !TEX engine = uplatex
-% !TEX producer = dvipdfmx
-% !TEX outputDirectory = build
-% !TEX moveResultToSourceDirectory = false
-\documentclass[10ptj,a4j,fleqn,dvipdfmx,uplatex]{jsarticle}
-\usepackage{mine}
-\graphicspath{{images/}}
+%Last updated: "Mon Jan 05 17:13:09 2004"
+%modified: 2020/01/13
+\documentclass[12pt,a4j,dvipdfmx,uplatex,jis2004]{jsk-thesis}
 
-\title{修士論文}
-\subtitle{ネオハイパーグレート線形回帰ツヴァイに\\もとづくミリシタにおける最適ユニットの\\選択戦略に関する研究}
-\teacher{北沢 志保　教　授\\矢吹 可奈　准教授}
-\author{37-123456　イショティハドゥス}
-\gakka{ミリシタ学専攻}
-\date{平成31年1月31日}
+% 数式・科学表記
+\usepackage{amsmath,amssymb,bm,mleftright,diffcoeff}
+\usepackage{siunitx}
+
+\usepackage{cite}
+\usepackage{eclbkbox}
+\usepackage{cases}
+\usepackage{graphicx}
+\usepackage[dvipsnames,svgnames,x11names,table,xcdraw]{xcolor}
+\graphicspath{{figure/}}% includegraphicsとかのpath
+\usepackage{okumacro}
+\usepackage{pxrubrica}
+\usepackage{url} %\url{http://hoge.ac.jp/~hoge/}
+%\usepackage{html} %latex2htmlで利用
+\definecolor{googleblue}{HTML}{1111cc}
+\iftrue
+\usepackage[dvipdfmx,%
+pdflang={jp},%
+bookmarks=true,%
+bookmarksnumbered=true,%
+bookmarkstype=toc,%
+colorlinks=true,%
+linkcolor=black,%
+citecolor=black,%
+urlcolor=googleblue,%
+pdftitle={},%PDFタイトル
+pdfauthor={},%PDF著者
+pdfkeywords={}%PDFキーワード
+]{hyperref}
+\usepackage{pxjahyper}
+\fi
+% 相互参照
+\usepackage[noabbrev]{cleveref}
+% \let\nref\ref
+% \let\ref\cref
+% \crefname{chapter}{章}{章}
+\crefformat{chapter}{#2第#1章#3}
+% \crefrangeformat{chapter}{#3第#1#4--#5#2章#6}
+\crefformat{section}{#2#1{}節#3}
+\crefformat{subsection}{#2#1{}項#3}
+\crefformat{subsubsection}{#2#1{}節#3}
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+\crefname{section}{}{}
+\crefname{appendix}{}{}
+\def\crefrangeconjunction{--}
+\def\crefpairconjunction{，}
+\def\crefmiddleconjunction{，}
+\def\creflastconjunction{，}
+\def\crefpairgroupconjunction{，}
+\def\crefmiddlegroupconjunction{，}
+\def\creflastgroupconjunction{，}
+\usepackage{udline}
+
+\def\topfraction{1.0}
+\def\dbltopfraction{1.0}
+\def\bottomfraction{1.0}
+\def\dblbottomfraction{1.0}
+\def\textfraction{0.0}
+\def\dbltextfraction{0.0}
+\def\floatpagefraction{1.0}
+\def\dblfloatpagefraction{1.0}
+
+\usepackage{pdfpages}
+\usepackage{tikz,scsnowman}
+
+% 表処理
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% キャプション
+\usepackage{subcaption}
+\captionsetup{labelsep=quad}
+% \def\thesection{第\arabic{section}章}
+
+% フォント
+\usepackage[ScaleRM=1.04]{libertinus-type1}
+\usepackage{libertinust1math}
+\usepackage[scaled=0.93]{helvet}
+\usepackage[scaled=0.91]{beramono}
+\usepackage[T1]{fontenc}
+% \usepackage{lmodern}
+\makeatletter
+\def\bfseries@rm{bx}
+\makeatother
+
+% 日本語フォント
+\usepackage[expert,uplatex,bold]{otf}
+% フォントを変えたいなら pxchfon パッケージを使うとよい
+% 参考: https://qiita.com/zr_tex8r/items/15ec2848371ec19d45ed
+\usepackage[ipaex]{pxchfon}
+% \setlightminchofont{SourceHanSerifJP-Light.otf}
+% \setmediumminchofont{SourceHanSerifJP-Regular.otf}
+% \setboldminchofont{SourceHanSerifJP-Bold.otf}
+% \setmediumgothicfont{SourceHanSansJP-Regular.otf}
+% \setboldgothicfont{SourceHanSansJP-Bold.otf}
+% \setxboldgothicfont{SourceHanSansJP-Heavy.otf}
+% \setmarugothicfont{GenJyuuGothic-Monospace-Regular.ttf}
+% \usepackage{plext}
+
+% 脚注
+\let\oldthefootnote\thefootnote
+\def\thefootnote{{\color{darkgray}\oldthefootnote}}
+\let\oldthempfootnote\thempfootnote
+\def\thempfootnote{{\color{darkgray}$\dagger$\arabic{mpfootnote}}}
+\renewcommand{\footnoterule}{\noindent\tikz\draw[dotted,darkgray] (0,0)--(5,0);\vspace{5pt}}
+
+% jsclasses 用 mpfootnotemark
+\makeatletter
+\def\mpfootnotemark{%
+\@ifnextchar[\@xmpfootnotemark
+{\stepcounter{footnote}%
+\protected@xdef\@thefnmark{\thempfn}%
+\@footnotemark}}
+\def\@xmpfootnotemark[#1]{%
+\begingroup
+\c@mpfootnote #1\relax
+\unrestored@protected@xdef\@thefnmark{\thempfn}%
+\endgroup
+\@footnotemark}
+\let\mpfootnotemarks@ve=\mpfootnotemark
+\def\mpfootnotemark{\inhibitglue\mpfootnotemarks@ve}
+\makeatother
+
+% 数式略記
+\DeclareMathOperator*{\argmax}{arg~max}
+\DeclareMathOperator*{\argmin}{arg~min}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\paren}[1]{\mleft(#1\mright)}
+\newcommand{\sbra}[1]{\mleft\lbrack#1\mright\rbrack}
+\newcommand{\cbra}[1]{\mleft\lbrace#1\mright\rbrace}
+\newcommand{\abs}[1]{\mleft|#1\mright|}
+\newcommand{\norm}[1]{\mleft\|#1\mright\|}
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
+\newcommand{\agivenb}[2]{#1\relmiddle|#2}
+\newcommand{\agivenbp}[2]{\paren{\agivenb{#1}{#2}}}
+
+\usepackage{bxtexlogo,strike}
+
+\newcommand{\enhance}[1]{{\gtfamily\sffamily#1}}
+
+\include{chapters/00preamble}
+
+\date{平成27年2月2日 提出}
+\author{指導教員 hogehoge~教授\\~\\~\\~\\東京大学大学院~情報理工学系研究科~知能機械情報学専攻\\00-000000~hogehoge}
+\title{タイトル\\
+\scsnowman[scale=2,body,hat=red,muffler=blue]\scsnowman[scale=2,hat,snow,arms,buttons,note]\scsnowman[scale=3,muffler=red,arms,broom=brown]\scsnowman[scale=2,mouthshape=frown,hat=green]\ajSnowman}
 
 \begin{document}
+
+\setlength{\baselineskip}{20pt}
+
 \maketitle
 
-\null\vfill
-\begin{center}
-本論文は東京大学大学院アイドルマスター学系研究科に修士号授与の要件として提出した修士論文である．
-\end{center}
-\vfill
-\clearpage
+\includepdf{platexsheet-jsclasses.pdf}
 
-\pagestyle{plain}
-\pagenumbering{roman}
-\setcounter{page}{1}
-\input{chapters/00-abstract}
-
+\setcounter{tocdepth}{1}
 \tableofcontents
+% \listoffigures
+% \listoftables
 
-% 図目次・表目次は，数が少ないとページ数稼ぎに見えるので，必要ないなら削除したほうがいい
-\listoffigures
-\listoftables
+\include{chapters/01introduction}
+\include{chapters/02concept}
+\include{chapters/03app}
+\include{chapters/04experiment1}
+\include{chapters/05experiment2}
+\include{chapters/06conclusion}
+\include{chapters/90thanks}
 
-\clearpage
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\phantomsection
+\addcontentsline{toc}{chapter}{参考文献}
+\pagestyle{myheadings}
+\markboth{参考文献}{参考文献}
+\bibliographystyle{junsrt}
+\renewcommand{\bibname}{\vspace*{-7cm}参考文献}
+\bibliography{reference}
 
-\input{chapters/01-introduction}
-\input{chapters/02-hoge}
-\input{chapters/51-conclusion}
-\input{chapters/90-acknowledgements}
-
-\bibliography{references}
-\bibliographypubs{publications}
-
+\phantomsection
+%\addcontentsline{toc}{chapter}{付録}
 \appendix
-\input{chapters/91-appendix1}
+\include{chapters/91appendix}
+
+\include{chapters/99backtitle}
 
 \end{document}

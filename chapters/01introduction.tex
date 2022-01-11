@@ -1,12 +1,32 @@
 % !TEX root = ../main.tex
+%Last updated: "Mon Jan 05 23:25:33 2004"
+%\documentclass[12pt]{jsk-thesis}
+%\begin{document}
+
+\chapter{序論}
+\label{chap:introduction}
+\section{このテンプレートについて}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+お\TeX\TeX\ \ \upLaTeX\ \ \pLaTeX
+\par
+jskのやつと\href{https://github.com/Ishotihadus/master-thesis-format}{ishotihadusさんのやつ}を組み合わせてみた．\\
+macOS Montereyのtexlive(mactex)2021で動作確認した．
+\subsection{主張}
+makefileやepsは使わないようにしましょう．latexmkrcを環境や好みに合わせて変更し，\texttt{latexmk -pvc}でプレビューしながらやると便利．プリアンブルがchapters/00preamble.texとmain.texに分かれてるのは申し訳ない．自分で使いたいパッケージがあればどちらかに書けばよいが，たまにusepackageの順番の前後で動作が変わるものがあるので注意．
+\subsection{フォントについて}
+main.texの真ん中らへんのところを好きにいじるとよい．
+
+以下ishotihadusさんのテンプレートから引用（一部改変）\\
+\hrulefill
 \section{このフォーマットの使い方}
+
 \label{sec:02-hoge}
 
 \subsection{動作環境}
 
-\TeX{}Live 2018の\upLaTeX{}を使っている．
+\TeX Live 2018の\upLaTeX を使っている．
 こういうのはなるべく新しいものを使ったほうがいいぞ．
-\upLaTeX{}を使うことで，種﨑敦美みたいな文字を普通に出せるようになる．
+\upLaTeX を使うことで，種﨑敦美みたいな文字を普通に出せるようになる．
 
 \subsection{latexmk}
 
@@ -38,8 +58,8 @@ Atomのlatexパッケージ\footnote{\url{https://atom.io/packages/latex}}に対
 指定なし（10pt）にするとPostScript換算で\SI{9.21}{pt}（\SI{9.21}{bp}）になってしまって少し小さいので，10ptjを指定して\SI{10}{bp}にしている．
 
 jsclassesでの最新版では，8pt，9pt，10pt，11pt，12pt，14pt，17pt，20pt，21pt，25pt，30pt，36pt，43pt，12Q，14Q，10ptj，10.5ptj，11ptj，12ptjが使える．
-\pLaTeX{}での\SI{10}{pt}は\SI{13}{Q}のことで，14Qを指定すると\pLaTeX{}での$10 \times 14/13=\SI{10.77}{pt}$になる．
-10ptj（\SI{10}{bp}）は，\pLaTeX{}では\SI{10.85}{pt}になる．
+\pLaTeX での\SI{10}{pt}は\SI{13}{Q}のことで，14Qを指定すると\pLaTeX での$10 \times 14/13=\SI{10.77}{pt}$になる．
+10ptj（\SI{10}{bp}）は，\pLaTeX では\SI{10.85}{pt}になる．
 
 \subsection{コマンドの使い方}
 \label{ssec:02-hoge-commands}
@@ -102,30 +122,30 @@ urlパッケージをデフォルトで読み込んである。urlコマンド�
 \ref{fig:yayoiori}にその例を示す．
 
 \twofigure{
-    \includegraphics[width=.8\linewidth]{007ior0084_1.png}
-    \subcaption{水瀬伊織}
+    \includegraphics[width=.8\linewidth]{star.png}
+    \subcaption{star}
     \label{fig:iori}
 }{
-    \includegraphics[width=.8\linewidth]{005yay0084_1.png}
-    \subcaption{高槻やよい}
+    \includegraphics[width=.8\linewidth]{moon.png}
+    \subcaption{moon}
     \label{fig:yayoi}
 }{
-    \caption[フェス限の伊織とやよいの比較]{フェス限の伊織とやよいの比較（ともに特訓後）．どっちもかわいい．}
+    \caption{star and moon}
     \label{fig:yayoiori}
 }
 
 \subsection{参照}
 
-あらゆる参照はrefコマンドだけでOKなようになっている．
+あらゆる参照はcrefコマンドだけでOKなようになっている．
 「図」とか「表」とか「節」とか「式」とかは空気を読んで勝手に入る．
 
-\ref{fig:kana}に特訓前のフェス限矢吹可奈の画像を示す．
-また，最近のフェス限の性能比較は\ref{tbl:fes}に示す．
+\cref{fig:kana}にcatの画像を示す．
+また，最近のフェス限の性能比較は\cref{tbl:fes}に示す．
 
 \begin{figure}
     \centering
-    \includegraphics[width=.8\linewidth]{036kan0104_0.png}
-    \caption[フェス限矢吹可奈]{フェス限矢吹可奈（特訓前）．雪ではしゃぐ矢吹可奈はかわいい．}
+    \includegraphics[width=.8\linewidth]{cat.png}
+    \caption{cat}
     \label{fig:kana}
 \end{figure}
 
@@ -144,17 +164,16 @@ urlパッケージをデフォルトで読み込んである。urlコマンド�
     \label{tbl:fes}
 \end{table}
 
-章や節の参照は\ref{sec:02-hoge}とか\ref{ssec:02-hoge-font}とかになる．
+章や節の参照は\cref{sec:02-hoge}とか\cref{ssec:02-hoge-font}とかになる．
 
 refはcleverefを使っているので，\verb|\ref{eq:eq1,eq:eq2,eq:eq3}|などとカンマ区切りで使える．
-使うと\ref{eq:eq1,eq:eq2,eq:eq3,eq:eq5}のように勝手にいい感じになる．
+使うと\cref{eq:eq1,eq:eq2,eq:eq3,eq:eq5}のように勝手にいい感じになる．
 なお，章と節の参照をカンマ区切りで指定するとおかしくなっちゃうので，これは使わないほうがよい（設定するのが面倒くさかった）．
 
 \subsection{参考文献}
 
-参考文献と発表文献を分けて書けるようになっている．
-普通にciteすると参考文献に載るようになっており，発表文献のファイルはデフォルトですべて出力されるようになっている．
-発表文献の順序はbibファイルに書かれている順序になる．
+\strike{参考文献と発表文献を分けて書けるようになっている．普通にciteすると参考文献に載るようになっており，発表文献のファイルはデフォルトですべて出力されるようになっている．発表文献の順序はbibファイルに書かれている順序になる．}
+\par 引用順に載るようになっている．
 
 \subsection{脚注}
 
@@ -168,3 +187,67 @@ refはcleverefを使っているので，\verb|\ref{eq:eq1,eq:eq2,eq:eq3}|など
         \footnotetext[765]{765個も脚注はない．}
     \end{minipage}
 \end{center}
+\hrulefill\\引用以上．
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \parbox{6zw}{\ajMaru{1}横組\ajLig{サンチーム}\\
+%   {\TeX}は\textbf{アレ}、\\
+%   {\ajSnowman}は\textbf{非アレ}。}%
+% \quad
+% \parbox<t>{6zw}{\ajMaru{2}縦組\ajLig{サンチーム}\\
+%   {\TeX}は\textbf{アレ}、\\
+%   {\ajSnowman}は\textbf{非アレ}。}% https://zrbabbler.hatenablog.com/entry/20171008/1507481645 より引用
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \section{研究の目的}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \verb|\cref{}|でいい感じに
+\cref{fig:arm}のように〜
+%%%図を入れる（基本）%%%
+% \begin{figure}[htbp]
+% \begin{center}
+% \includegraphics[width=0.7\columnwidth ]{arm.png}
+% \caption{image of arm}
+% \label{fig:arm}
+% \end{center}
+% \end{figure}
+
+%%%図を入れる（応用：preamble.texにショートカットコマンドを記述）%%%
+\png{arm}{0.8\columnwidth}{Let's bring da house down.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{本論文の構成}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+本論文は全\ref{chap:conclusion}章から構成される．以下に各章の概要を述べ
+る．
+
+\textbf{\cref{chap:introduction}「序論」}では，
+本研究の背景と目的，及び本論文の構成を述べた．
+\cite{SINRIGAKU}
+%５ページぐらいかな。
+
+\textbf{\cref{chap:concept}「」}では，
+
+%１５ページぐらいかな。
+
+
+\textbf{\cref{chap:app}「」}では，
+
+%１５ページぐらいかな。
+
+
+\textbf{\cref{chap:experiment1}「」}では，
+
+%２０ページぐらいかな。
+
+
+\textbf{\cref{chap:experiment2}「」}では，
+
+%２０ページぐらいかな。
+
+
+\textbf{\cref{chap:conclusion}「結論」}では，本研究についての結論と今後の展望について述べる．

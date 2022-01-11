@@ -1,0 +1,131 @@
+% !TEX root = ../main.tex
+%\setlength{\textwidth}{15cm}
+%\setlength{\textheight}{33\baselineskip}
+%\setlength{\textwidth}{15cm}
+
+\newcommand{\IIC}{I\raisebox{0.8ex}{\small 2}C}
+%\newcommand{\figref}[1]{{\bf Figure~\ref{fig:#1}}~}
+%\newcommand{\tabref}[1]{{\bf Table~\ref{#1}}~}
+%\newcommand{\equref}[1]{{\bf Equation~\ref{#1}}~}
+\newcommand{\figref}[1]{{図\ref{#1}}~}
+\newcommand{\tabref}[1]{{表~\ref{#1}}~}
+\newcommand{\equref}[1]{{式~\ref{#1}}~}
+\newcommand{\chapref}[1]{第\ref{#1}章}
+\newcommand{\secref}[1]{\ref{#1}節}
+\newcommand{\sgn}{\mbox{sgn}}
+
+%\newcommand{\eqref}[1]{式(\ref{eq:#1}) }
+\newcommand{\bmath}[1]{\mbox{\boldmath $#1$}}
+
+%%\pagestyle{fancyplain}
+%
+%\setlength{\baselineskip}{8mm}
+%\setlength{\evensidemargin}{-3mm}
+%\setlength{\oddsidemargin}{10mm}
+%\setlength{\topmargin}{5mm}
+%\setlength{\textheight}{33\baselineskip}
+%\setlength{\textwidth}{15cm}
+%
+%\def\chapapp#1{第#1章 ：}
+%\renewcommand{\chaptermark}[1]{\markboth%
+%{--- \chapapp{\thechapter}#1 ---}
+%{--- \chapapp{\thechapter}#1 ---}}
+%\renewcommand{\chaptermark}[1]{}
+%\renewcommand{\sectionmark}[1]{}
+%%\setlength{\headrulewidth}{1.0pt}
+%\setlength{\headsep}{15mm}
+%%\setlength{\footrulewidth}{0pt}
+%%\setlength{\plainheadrulewidth}{0pt}
+%%\setlength{\plainfootrulewidth}{0pt}
+%%\addtolength{\headwidth}{\marginparsep}
+%%\setlength{\headwidth}{\textwidth}
+%%\lhead[\fancyplain{}{\bf\thepage}]{\fancyplain{}{\bf\leftmark}}
+%%\chead{}
+%%\rhead[\fancyplain{}{\bf\rightmark}]{\fancyplain{}{\bf\thepage}}
+%%\lfoot{}
+%%\cfoot{}
+%%\rfoot{}
+%
+\newcommand{\pic}[4]{%
+  \begin{figure}[htbp]%
+    \begin{center}%
+      \includegraphics[width=#2]{#1.#4}%
+    \end{center}%
+   \vspace{-5mm}
+    \caption{#3}%
+    \label{fig:#1}% 引用は\cite{hoge}
+   \vspace{5mm}
+  \end{figure}}
+
+\newcommand{\pdf}[3]{%
+  \pic{#1}{#2}{#3}{pdf}
+}
+
+\newcommand{\jpg}[3]{%
+  \pic{#1}{#2}{#3}{jpg}
+}
+
+% \newcommand{\fig}[3]{%
+%   \pic{#1}{#2}{#3}{eps}
+% }
+
+\newcommand{\png}[3]{%
+  \pic{#1}{#2}{#3}{png}
+}
+
+% \newcommand{\figs}[5]{%
+%   \begin{figure}[htbp]%
+%     \leavevmode
+%     \begin{center}%
+%       \includegraphics[width=#2]{figure/#1.eps}%
+%       \includegraphics[width=#4]{figure/#3.eps}%
+%     \end{center}%
+%     \vspace{-5mm}
+%     \caption{#5}%
+%     \label{fig:#1}% 本文で引用するときは\cite{fig:hoge}なので注意
+%     \vspace{5mm}
+%   \end{figure}}
+
+% \newcommand{\twofigs}[6]{%
+%   \begin{figure}[htbp]%
+%     \begin{minipage}{0.5\hsize}%
+%       \begin{center}%
+%         \includegraphics[width=#2]{figure/#1.eps}%
+%       \end{center}%
+%       \caption{#3}%
+%       \label{fig:#1}% 本文で引用するときは\cite{fig:hoge}なので注意
+%     \end{minipage}%
+%     \begin{minipage}{0.5\hsize}
+%       \begin{center}%
+%         \includegraphics[width=#5]{figure/#4.eps}
+%       \end{center}%
+%       \caption{#6}%
+%       \label{fig:#4}% 本文で引用するときは\cite{fig:hoge}なので注意
+%     \end{minipage}%
+%   \end{figure}}
+
+\newcommand{\twofigure}[3]{%
+\begin{figure}\centering\begin{minipage}[b]{.5\linewidth}\centering #1\end{minipage}%
+\begin{minipage}[b]{.5\linewidth}\centering #2\end{minipage}#3\end{figure}}
+\newcommand{\twofigurec}[3]{%
+\begin{figure*}\centering\begin{minipage}[b]{.5\linewidth}\centering #1\end{minipage}%
+\begin{minipage}[b]{.5\linewidth}\centering #2\end{minipage}#3\end{figure*}}
+\newcommand{\twofiguret}[3]{%
+\begin{figure}\centering\begin{minipage}[b]{\linewidth}\centering #1\end{minipage}\\%
+\begin{minipage}[b]{\linewidth}\centering #2\end{minipage}#3\end{figure}}
+
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1}
+%\providecommand{\DIFadd}[1]{{\protect\color{blue} \protect\ul{#1}}}
+%\providecommand{\DIFadd}[1]{{\protect\color{blue} \fontsize{10.5pt}{0pt}#1}}
+%\providecommand{\DIFdel}[1]{{\protect\color{red} \footnotesize \protect\Sl{#1}}}
+%\providecommand{\DIFdel}[1]{{\protect\color{red} \footnotesize #1}}
+\providecommand{\DIFaddbegin}{}
+\providecommand{\DIFaddend}{}
+\providecommand{\DIFdelbegin}{}
+\providecommand{\DIFdelend}{}
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}}
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}}
+\providecommand{\DIFaddbeginFL}{}
+\providecommand{\DIFaddendFL}{}
+\providecommand{\DIFdelbeginFL}{}
+\providecommand{\DIFdelendFL}{}

@@ -1,0 +1,208 @@
+% !TEX root = ../main.tex
+\chapter{球面関節角度センサの計算式の導出}
+
+\pagestyle{myheadings}
+\markboth{付録}{付録}
+
+\section*{球面関節角度センサの計算式の導出}
+%\section*{ロール・ピッチ・ヨー角計算式}
+
+\begin{figure}
+ \begin{center}
+%  \includegraphics[width=100mm]{pics/04/coordinates.eps}
+  \caption{Coordinates of coil arrangement.}
+  \label{fig:coordinates}
+ \end{center}
+\end{figure}
+
+% \figref{fig:coordinates}に示すように，内側コイルa,bの法線ベクトルを$v_a,
+% v_b$，外側コイルの法線ベクトルを$v_1, v_2$とする．球面関節のヨー，ピッチ，
+% ロール角をそれぞれ$\alpha,\beta, \gamma$ とし，その回転行列を\bm{R}とす
+% る．\figref{fig:coordinates}のように，$\alpha=\beta=\gamma=0$の際を初期
+% 姿勢とし，$v_a = (1,0,0), v_b = (0,1,0)$とすると，$v_a = \bm{R}\cdot (1,0,0),
+% v_b = \bm{R} \cdot (0,1,0)$となる．ある姿勢におけるコイル1
+% とコイルAのなす角度を${\theta}_{1a}$, 以下同様の表記とする．
+% ${\theta}_{1a}$の余弦$cos {\theta}_{1a}$は，$v_a$と$v_1$の内積から求めら
+% れ，以下のようになる．但し，$C_{\theta},S_{\theta}, T_{\theta}$はそれぞれ $cos
+% \theta, sin \theta, tan \theta$の略記とする．
+
+% M1a[a,b,c] = -Cos[theta] Sin[b]+Cos[a] Cos[b] Sin[theta]
+%M2a[a,b,c] = -Cos[theta] Sin[b]-Cos[a] Cos[b] Sin[theta]
+%M1b[a,b,c] = Cos[b] Cos[theta] Sin[c]+(-Cos[c] Sin[a]+Cos[a] Sin[b]
+%Sin[c]) Sin[theta]
+%M2b[a,b,c] = Cos[b] Cos[theta] Sin[c]-(-Cos[c] Sin[a]+Cos[a] Sin[b]
+%Sin[c]) Sin[theta]
+%M1c[a,b,c] = Cos[b] Cos[c] Cos[theta]+(Cos[a] Cos[c] Sin[b]+Sin[a]
+%Sin[c]) Sin[theta]
+%M2c[a,b,c] = Cos[b] Cos[c] Cos[theta]-(Cos[a] Cos[c] Sin[b]+Sin[a]
+%Sin[c]) Sin[theta]
+
+% \begin{equation}\label{rpy1}
+%  C_{1a} = - S_{\beta} C_{\omega} + C_{\alpha} C_{\beta} S_{\omega}
+% \end{equation}
+
+% \begin{equation}\label{rpy2}
+%  C_{2a} = - S_{\beta} C_{\omega} - C_{\alpha} C_{\beta} S_{\omega}
+% \end{equation}
+
+% \begin{equation}\label{rpy3}
+%  C_{1b} = C_{\beta} S_{\gamma} C_{\omega} + (-C_{\gamma} S_{\alpha} + C_{\alpha} S_{\beta} S_{\gamma}) S_{\omega}
+% \end{equation}
+
+% \begin{equation}\label{rpy4}
+%  C_{2b} = C_{\beta} S_{\gamma} C_{\omega} - (-C_{\gamma} S_{\alpha} + C_{\alpha} S_{\beta} S_{\gamma}) S_{\omega}
+% \end{equation}
+
+% \equref{rpy1} + \equref{rpy2}より，
+
+% \begin{equation}\label{rpy5}
+%  C_{1a} - C_{2a} = - 2 S_{\beta} C_{\omega}
+% \end{equation}
+
+% \equref{rpy1} - \equref{rpy2}より，
+
+% \begin{equation}\label{rpy6}
+%  C_{1a} - C_{2a} = 2  C_{\alpha} C_{\beta} S_{\omega}
+% \end{equation}
+
+% \equref{rpy3} + \equref{rpy4}より，
+
+% \begin{equation}\label{rpy7}
+%  C_{1b} +C_{2b} = 2 C_{\beta} S_{\gamma} C_{\omega}
+% \end{equation}
+
+% \equref{rpy3} - \equref{rpy4}より，
+
+% \begin{equation}\label{rpy8}
+%  C_{1b}  - C_{2b} = 2(-C_{\gamma} S_{\alpha} + C_{\alpha} S_{\beta} S_{\gamma}) S_{\omega}
+% \end{equation}
+
+% \equref{rpy5}, \equref{rpy6}, \equref{rpy7}より，
+
+% \begin{equation}\label{furoku:equ:pitch}
+%  \large
+%   S_{\beta}  = %
+%   \left(
+%    \frac{C_{1a}+C_{2a}}{2 C_{\omega}}
+%  \right)
+% \end{equation}
+
+% \begin{equation}\label{furoku:equ:roll}
+%  \large
+%   S_{\gamma} = %
+%   \left(
+%    \frac{C_{1b}+C_{2b}}%
+%    {2 C_{\omega} C_{\beta}}
+%  \right)
+% \end{equation}
+
+% \begin{equation}\label{furoku:equ:yaw}
+%  \large
+%   C_{\alpha} = %
+%   \left(
+%    \frac{C_{1a} - C_{2b}}%
+%    {2  S_{\omega} C_{\beta}}
+%  \right)
+% \end{equation}
+
+% となる．ロール，ピッチ角については，球面関節が初期姿勢から90度以上まわり
+% 込むことはなく，可動範囲が-60〜60[deg.]程度と考えると，\equref{furoku:equ:roll}，
+% \equref{furoku:equ:pitch}から計算可能である．
+
+% また\equref{rpy8}，\equref{equ:pitch}，\equref{equ:roll}より，
+
+% \begin{equation}\label{furoku:equ:yaw2}
+%  \large
+%   S_{\alpha} = %
+%    \frac{1}{2}%
+%    \left(
+%     (C_{1a}-C_{2b}) T_{\beta} T_{\gamma} - \frac{C_{1b}-C_{2b}}{C_{\gamma}}%
+%   \right)
+% \end{equation}
+
+% となる．よって\equref{furoku:equ:yaw},\equref{furoku:equ:yaw2}を用いて，全周にわたってヨー角
+% $\alpha$も一意に求めることができる．
+
+%\section*{オイラー角での計算式}
+%
+%%M1a[a,b,c] = -Cos[c] Cos[theta] Sin[b]+(Cos[a] Cos[b] Cos[c]-Sin[a]
+%%Sin[c]) Sin[theta]
+%%
+%%M2a[a,b,c] = -Cos[c] Cos[theta] Sin[b]-(Cos[a] Cos[b] Cos[c]-Sin[a]
+%%Sin[c]) Sin[theta]
+%%
+%%M1b[a,b,c] = Cos[theta] Sin[b] Sin[c]+(-Cos[c] Sin[a]-Cos[a] Cos[b]
+%%Sin[c]) Sin[theta]
+%%
+%%M2b[a,b,c] = Cos[theta] Sin[b] Sin[c]-(-Cos[c] Sin[a]-Cos[a] Cos[b]
+%%Sin[c]) Sin[theta]
+%%
+%%M1a[a,b,c]+M2a[a,b,c] = -2 Cos[c] Cos[theta] Sin[b]
+%%
+%%M1b[a,b,c]+M2b[a,b,c] = 2 Cos[theta] Sin[b] Sin[c]
+%
+%\begin{equation}
+% M_{1a} = -C_{\gamma} C_{\theta} S_{\beta}+(C_{\alpha} C_{\beta}
+%  C_{\gamma}-S_{\alpha} S_{\gamma}) S_{\theta}
+%\end{equation}
+%
+%\begin{equation}
+% M_{2a} = -C_{\gamma} C_{\theta} S_{\beta}-(C_{\alpha} C_{\beta}
+%  C_{\gamma}-S_{\alpha} S_{\gamma}) S_{\theta}
+%\end{equation}
+
+\begin{equation}
+M_{1b} = C_{\theta} S_{\beta} S_{\gamma}+(-C_{\gamma}
+ S_{\alpha}-C_{\alpha} C_{\beta} S_{\gamma}) S_{\theta}
+\end{equation}
+
+\begin{equation}
+ M_{2b} = C_{\theta} S_{\beta} S_{\gamma}-(-C_{\gamma}
+  S_{\alpha}-C_{\alpha} C_{\beta} S_{\gamma}) S_{\theta}
+\end{equation}
+
+\chapter{実装に使用したライブラリ}
+
+本研究での実装に用いたライブラリを紹介する．
+
+\section{OpenGL}
+% \chapref{chap:predict}で実装したインタフェースの3DCGレンダリングにあたり，
+OpenGL\cite{OPENGL}というライブラリを用いた．
+
+OpenGLは元々Silicon Graphics社が中心となって開発された，
+CGのためのプログラミングインタフェースである．
+現在はOpenGLとして標準化が行われている．
+OpenGLは，テクスチャマッピングやZバッファ法，グローシェーディング，アルファブレンディングなど，
+3DCGに関する機能が充実しており，
+またWindowsやLinuxなどOSを選ばず動作する移植性の高いライブラリである．
+
+\section{OPENAL}
+% \chapref{chap:predict}で実装したインタフェースの3D音響レンダリングにあたり，
+OpenAL\cite{OPENAL}というライブラリを用いた．
+
+OpeｎALは元々Loki Software社が開発し，Loki Software社の倒産後しばらくしてCreative Technology社が主催者として開発を進めている．
+マルチチャンネル3次元定位オーディオを効率よく表現することができるプログラミングインタフェースである．
+
+距離による衰弱やドップラー効果などの機能が充実しており，またWindowsやLinuxなどOSを選ばず動作する移植性の高いライブラリである．
+% \section{JOGL}
+% \chapref{chap:action}で実装したインタフェースの3DCGレンダリングにあたり，
+% JOGL\cite{JOGL}というライブラリを用いた．
+
+% JOGLは，
+% Javaでネイティブメソッドを実行するための
+% JNI(Java Native Interface)と呼ばれるプログラミングインタフェースで，
+% JavaでのOpenGLの利用を可能にしている．
+% JOGLはOpenGLのほとんどの関数をラップしており，
+% さらにテクスチャ入出力などのユーティリティー機能も提供している．
+% またWindowsやLinux，MacOSXなど各OS用のネイティブライブラリが用意されており，
+% 移植時にはネイティブライブラリだけ変更すればよく，
+% コードに手を入れる必要はほとんどない．
+
+% \section{Joystick Driver for Java}
+% \chapref{chap:action}で実装したインタフェースの入力として
+% ジョイスティックを使用するにあたり，
+% Joystick Driver for Java\cite{JoystickDriver}というジョイスティックドライバを用いた．
+% Joystick Driver for JavaはJOGL同様，JNIを利用している．
+% Joystick Driver for Javaを使うことで，
+% 2〜6軸のジョイスティックが扱える．
+% またWindows，Linux用のネイティブライブラリが用意されている．
